@@ -1,0 +1,2 @@
+PySide2
+-U https://github.com/vin985/pysoundplayer/archive/master.zip
