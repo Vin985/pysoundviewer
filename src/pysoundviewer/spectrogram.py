@@ -20,6 +20,7 @@ class SpectrogramOptions(OptionsObject):
     }
     ACCEPTED_VALUES = {
         "n_fft": [str(2 ** x) for x in range(7, 12)],
+        # "hop_length": [str(2 ** x) for x in range(6, 11)],
         "scale": ["Linear", "Mel"],
         "window": ["hann", "hamming", "boxcar", "bartlett"],
     }
@@ -47,6 +48,7 @@ class Spectrogram:
         hop_length = self.options["hop_length"]
         if hop_length is not None:
             hop_length = int(hop_length)
+
         spectro = librosa.stft(
             self.audio.get_data(),
             int(self["n_fft"]),
@@ -55,7 +57,9 @@ class Spectrogram:
         )
 
         if self["scale"] == "Mel":
-            spectro = librosa.feature.melspectrogram(S=spectro)
+            spectro = librosa.feature.melspectrogram(
+                S=spectro  # y=self.audio.get_data(), sr=self.audio.sr
+            )
 
         spec = np.abs(spectro)
 
@@ -164,6 +168,6 @@ class Spectrogram:
 
     def __str__(self):
         string = "Spectrogram with fft: {0}, shape {1} and value \n {2}".format(
-            self["fft"], self.spec.shape, self.spec
+            self["n_fft"], self.spec.shape, self.spec
         )
         return string
