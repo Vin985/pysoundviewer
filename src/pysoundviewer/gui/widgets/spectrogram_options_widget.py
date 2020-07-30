@@ -24,6 +24,9 @@ class SpectrogramOptionsWidget(OptionsWidget, Ui_SpectrogramOptions):
         self.cb_todb.stateChanged.connect(partial(self.update, "to_db", checkbox=True))
         self.combo_fft.currentTextChanged.connect(partial(self.update, "n_fft"))
         self.combo_scale.currentTextChanged.connect(partial(self.update, "scale"))
+        # self.combo_hop_length.currentTextChanged.connect(
+        #     partial(self.update, "hop_length")
+        # )
         self.combo_window.currentTextChanged.connect(partial(self.update, "window"))
         self.cb_follow_sound.stateChanged.connect(
             partial(self.update, "follow_sound", checkbox=True, redraw=False)
@@ -42,6 +45,11 @@ class SpectrogramOptionsWidget(OptionsWidget, Ui_SpectrogramOptions):
                 self.combo_scale,
                 SpectrogramOptions.ACCEPTED_VALUES["scale"],
             ),
+            # "hop_length": partial(
+            #     self.update_combobox,
+            #     self.combo_hop_length,
+            #     SpectrogramOptions.ACCEPTED_VALUES["hop_length"],
+            # ),
             "n_fft": partial(
                 self.update_combobox,
                 self.combo_fft,

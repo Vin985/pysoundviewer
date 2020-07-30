@@ -56,6 +56,29 @@ def main():
     app.setApplicationName("pysoundplayer")
     example = SpectrogramViewerExample()
     example.load_file("example.wav")
+
+    tag1 = {
+        "start": 1.5,
+        "end": 3,
+        "text": "this is a test",
+        "border_color": "#ff0000",
+        "fill_color": "#00ff00",
+        "text_fontsize": 24,
+    }
+
+    tag2 = {
+        "start": 10,
+        "end": 20,
+        "min_freq": 1000,
+        "max_freq": 5000,
+        "text": "frequency test",
+        # "text_color": "#000000",
+        "color": "#ff00ff",
+    }
+
+    example.spectrogram_viewer.draw_annotation(tag1)
+    example.spectrogram_viewer.draw_annotation(tag2)
+
     example.show()
     sys.exit(app.exec_())
 

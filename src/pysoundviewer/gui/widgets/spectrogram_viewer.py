@@ -1,10 +1,12 @@
 from PIL import ImageQt
-from PySide2 import QtWidgets, QtCore, QtGui
+from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtWidgets import QGraphicsPixmapItem, QGraphicsScene, QGraphicsTextItem
+
 from ...image import ImageGenerator
 from ...spectrogram import Spectrogram
-from .ui.spectrogram_viewer_ui import Ui_SpectrogramViewer
 from ..event_filters import SpectrogramMouseFilter
+from .annotated_rect_item import AnnotatedRectItem
+from .ui.spectrogram_viewer_ui import Ui_SpectrogramViewer
 
 
 class SpectrogramViewer(QtWidgets.QWidget, Ui_SpectrogramViewer):
@@ -154,9 +156,8 @@ class SpectrogramViewer(QtWidgets.QWidget, Ui_SpectrogramViewer):
 
     def update_spectrogram(self, option, redraw):
         if redraw:
-            self.spectrogram = self.audio.get_spectrogram(
-                self.spectrogram_options, recreate=True
-            )
+            self.spectrogram = Spectrogram(self.audio, self.spectrogram_options)
+            self.freq2pixels(6000)
 
     def update_image(self, option, redraw):
         if redraw:
@@ -172,6 +173,48 @@ class SpectrogramViewer(QtWidgets.QWidget, Ui_SpectrogramViewer):
         for item in items:
             if isinstance(item, QtWidgets.QGraphicsRectItem):
                 self.spectrogram_scene.removeItem(item)
+
+    def freq2pixels(self, freq):
+        res = 0
+        if self.spectrogram["scale"] == "Linear":
+            height = self.image_generator["height"]
+            max_freq = self.audio.sr / 2
+            freq_step = height / max_freq
+            res = height - (freq * freq_step)
+        else:
+            print("Only linear scale is supported so far")
+
+        return res
+
+    def draw_annotation(self, opts):
+        x1 = self.image_generator.sec2pixels(opts.get("start", 0))
+        x2 = self.image_generator.sec2pixels(opts.get("end", 0))
+        y1 = self.freq2pixels(opts.get("max_freq", 0))
+        y2 = self.freq2pixels(opts.get("min_freq", 0))
+        text = opts.get("text", "")
+        buffer = opts.get("vertical_offset", 1)
+
+        if y2 - y1 <= 0:
+            y1 = 0
+            y2 = self.spectrogram_scene.height() - 2
+            if buffer:
+                v_offset = buffer * y2 / 100
+                y1 += v_offset
+                y2 -= v_offset
+                if text:
+                    font = QtGui.QFont(
+                        opts.get("text_font", ""), opts.get("text_fontsize", 12)
+                    )
+                    font_height = QtGui.QFontMetrics(font).height()
+                    y1 += font_height
+
+        coords = (x1, y1, x2 - x1, y2 - y1)
+
+        opts["coords"] = coords
+
+        rect = AnnotatedRectItem(opts)
+
+        self.spectrogram_scene.addItem(rect)
 
     def draw_rect(self, start, end, y=0, height=-1, color="#ffffff", fill="", buffer=1):
         x = self.image_generator.sec2pixels(start)
