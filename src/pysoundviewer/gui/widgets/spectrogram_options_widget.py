@@ -10,6 +10,7 @@ from .options_widget import OptionsWidget
 class SpectrogramOptionsWidget(OptionsWidget, Ui_SpectrogramOptions):
     def __init__(self, parent, options=None):
         super().__init__(parent, self, options)
+        self.gridLayout.setAlignment(QtCore.Qt.AlignTop)
         self.group = SpectrogramOptions.TYPE
 
     def link_events(self):

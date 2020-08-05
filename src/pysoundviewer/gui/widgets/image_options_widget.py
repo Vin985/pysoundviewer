@@ -1,5 +1,7 @@
 from functools import partial
 
+from PySide2 import QtCore
+
 from .options_widget import OptionsWidget
 from ...image import ImageOptions
 from .ui.image_options_ui import Ui_ImageOptions
@@ -8,6 +10,7 @@ from .ui.image_options_ui import Ui_ImageOptions
 class ImageOptionsWidget(OptionsWidget, Ui_ImageOptions):
     def __init__(self, parent, options=None):
         super().__init__(parent, self, options)
+        self.gridLayout.setAlignment(QtCore.Qt.AlignTop)
         self.group = ImageOptions.TYPE
 
     def link_events(self):
