@@ -192,15 +192,17 @@ class SpectrogramViewer(QtWidgets.QWidget, Ui_SpectrogramViewer):
         y1 = self.freq2pixels(opts.get("max_freq", 0))
         y2 = self.freq2pixels(opts.get("min_freq", 0))
         text = opts.get("text", "")
-        buffer = opts.get("vertical_offset", 1)
+        buffer = opts.get("vertical_buffer", 1)
+        top_offset = opts.get("top_offset", 0)
+        bottom_offset = opts.get("bottom_offset", 0)
 
         if y2 - y1 <= 0:
             y1 = 0
             y2 = self.spectrogram_scene.height() - 2
             if buffer:
                 v_offset = buffer * y2 / 100
-                y1 += v_offset
-                y2 -= v_offset
+                y1 += v_offset + top_offset
+                y2 -= v_offset - bottom_offset
                 if text:
                     font = QtGui.QFont(
                         opts.get("text_font", ""), opts.get("text_fontsize", 12)
