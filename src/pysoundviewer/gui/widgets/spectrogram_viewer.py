@@ -171,7 +171,7 @@ class SpectrogramViewer(QtWidgets.QWidget, Ui_SpectrogramViewer):
     def clear_rects(self):
         items = self.spectrogram_scene.items()
         for item in items:
-            if isinstance(item, QtWidgets.QGraphicsRectItem):
+            if isinstance(item, AnnotatedRectItem):
                 self.spectrogram_scene.removeItem(item)
 
     def freq2pixels(self, freq):
