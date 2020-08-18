@@ -77,7 +77,7 @@ class AnnotatedRectItem(InfoRectItem):
 
         self.setInfoString(self.opts.get("text", ""))
         self.set_colors()
-        print(coords, self.opts.get("text", "event"))
+        # print(coords, self.opts.get("text", "event"))
         self.setRect(*coords)
 
     def update_infostring(self):
