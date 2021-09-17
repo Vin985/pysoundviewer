@@ -1,7 +1,7 @@
 import ast
 import logging
 
-from PySide2.QtCore import QSettings
+from PySide6.QtCore import QSettings
 from ..spectrogram import SpectrogramOptions
 from ..image import ImageOptions
 

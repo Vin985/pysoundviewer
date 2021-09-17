@@ -1,2 +1,4 @@
-PySide2
+PySide6
+colorcet
+webcolors
 -U https://github.com/vin985/pysoundplayer/archive/master.zip

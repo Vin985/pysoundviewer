@@ -1,6 +1,6 @@
 from functools import partial
 
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 from .options_widget import OptionsWidget
 from ...image import ImageOptions

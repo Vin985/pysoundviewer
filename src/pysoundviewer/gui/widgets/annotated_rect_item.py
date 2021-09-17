@@ -1,4 +1,4 @@
-from PySide2 import QtCore, QtGui
+from PySide6 import QtCore, QtGui
 
 from pyqtextra.graphics.info_rect_item import InfoRectItem
 

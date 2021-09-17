@@ -1,4 +1,4 @@
-from PySide2.QtWidgets import QWidget
+from PySide6.QtWidgets import QWidget
 
 from pysoundplayer.gui.settings import SoundPlayerSettings
 
@@ -29,12 +29,13 @@ class QSpectrogramVizualizer(QWidget, Ui_QSpectrogramVizualizer):
 
     def link_events(self):
         self.sound_player.update_position.connect(
-            self.spectrogram_viewer.update_sound_marker)
+            self.spectrogram_viewer.update_sound_marker
+        )
         self.spectrogram_viewer.seek.connect(self.sound_player.seek)
-        self.image_options.option_updated.connect(
-            self.spectrogram_viewer.update_image)
+        self.image_options.option_updated.connect(self.spectrogram_viewer.update_image)
         self.spectrogram_options.option_updated.connect(
-            self.spectrogram_viewer.update_spectrogram)
+            self.spectrogram_viewer.update_spectrogram
+        )
 
     def show_text(self, text):
         self.spectrogram_viewer.display_text(text)

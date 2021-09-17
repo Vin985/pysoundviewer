@@ -1,6 +1,6 @@
 from PIL import ImageQt
-from PySide2 import QtCore, QtGui, QtWidgets
-from PySide2.QtWidgets import QGraphicsPixmapItem, QGraphicsScene, QGraphicsTextItem
+from PySide6 import QtCore, QtGui, QtWidgets
+from PySide6.QtWidgets import QGraphicsPixmapItem, QGraphicsScene, QGraphicsTextItem
 
 from ...image import ImageGenerator
 from ...spectrogram import Spectrogram
@@ -39,10 +39,10 @@ class SpectrogramViewer(QtWidgets.QWidget, Ui_SpectrogramViewer):
         self.spectrogram_view.setScene(self.spectrogram_scene)
 
     def define_shortcuts(self):
-        QtWidgets.QShortcut(
+        QtGui.QShortcut(
             QtGui.QKeySequence(QtCore.Qt.CTRL + QtCore.Qt.Key_Plus), self, self.zoom_in
         )
-        QtWidgets.QShortcut(
+        QtGui.QShortcut(
             QtGui.QKeySequence(QtCore.Qt.CTRL + QtCore.Qt.Key_Minus),
             self,
             self.zoom_out,

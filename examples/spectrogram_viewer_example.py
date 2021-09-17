@@ -1,6 +1,6 @@
 import sys
 
-from PySide2.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication, QMainWindow
 
 from pysoundviewer.gui.settings import SoundPlayerSettings
 

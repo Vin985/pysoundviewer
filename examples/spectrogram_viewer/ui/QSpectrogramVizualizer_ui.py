@@ -3,17 +3,14 @@
 ################################################################################
 ## Form generated from reading UI file 'QSpectrogramVizualizer.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.14.1
+## Created by: Qt User Interface Compiler version 6.1.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide2.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
-    QRect, QSize, QUrl, Qt)
-from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
-    QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
-    QRadialGradient)
-from PySide2.QtWidgets import *
+from PySide6.QtCore import *  # type: ignore
+from PySide6.QtGui import *  # type: ignore
+from PySide6.QtWidgets import *  # type: ignore
 
 from pysoundplayer.gui.QSoundPlayer import QSoundPlayer
 from pysoundplayer.gui.QImageOptions import QImageOptions
@@ -23,7 +20,7 @@ from pysoundplayer.gui.QSpectrogramOptions import QSpectrogramOptions
 
 class Ui_QSpectrogramVizualizer(object):
     def setupUi(self, QSpectrogramVizualizer):
-        if QSpectrogramVizualizer.objectName():
+        if not QSpectrogramVizualizer.objectName():
             QSpectrogramVizualizer.setObjectName(u"QSpectrogramVizualizer")
         QSpectrogramVizualizer.resize(400, 300)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
