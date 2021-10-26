@@ -16,7 +16,7 @@ class ImageOptions(OptionsObject):
         "contrast": 0,
         "invert_colors": False,
         "height": 400,
-        "pixels_in_sec": 200,
+        "pixels_per_sec": 200,
         "color_map": "rainbow",
     }
 
@@ -75,28 +75,17 @@ class ImageGenerator:
         return np.uint8(spec)
 
     def spec2img(
-        self, spectrogram, color_mask=(255, 0, 0), size=-1, resize_method=Image.BILINEAR
+        self, spectrogram, size=-1, resize_method=Image.BILINEAR, is_array=False
     ):
 
-        spec = self.__prepare_spectrogram(spectrogram.spec)
+        if not is_array:
+            spec = spectrogram.spec
+        else:
+            spec = spectrogram
+
+        spec = self.__prepare_spectrogram(spec)
 
         img = Image.fromarray(spec)
-
-        # Create image from float points
-        # img = Image.fromarray(spec, mode='F')
-        # # Convert in grayscale
-        # img = img.convert("L")
-        # # Colorise spectrogram
-        # if color_mask:
-        #     #img = ImageOps.colorize(img, (0, 0, 0), color_mask)
-        #     print(img)
-        #     print(spec)
-        #     print(np.amin(spec))
-        #     print(np.amax(spec))
-        #     print(np.mean(spec))
-        #     print(img.getextrema())
-        #     img = ImageOps.colorize(
-        #         img, (0, 0, 255), (255, 0, 0), (255, 255, 0), midpoint=int(np.mean(spec)))
 
         # enhance contrast
         if self["contrast"]:
@@ -137,11 +126,11 @@ class ImageGenerator:
         return composite
 
     def sec2pixels(self, sec, to_int=True):
-        pix = self["pixels_in_sec"] * sec
+        pix = self["pixels_per_sec"] * sec
         if to_int:
             return int(pix)
         return pix
 
     def pixels2sec(self, pixels):
-        sec = pixels / self["pixels_in_sec"]
+        sec = pixels / self["pixels_per_sec"]
         return sec

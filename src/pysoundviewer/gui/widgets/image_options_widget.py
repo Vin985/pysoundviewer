@@ -17,7 +17,9 @@ class ImageOptionsWidget(OptionsWidget, Ui_ImageOptions):
         self.cb_invert_colors.stateChanged.connect(
             partial(self.update, "invert_colors", checkbox=True)
         )
-        self.spin_pix_in_sec.valueChanged.connect(partial(self.update, "pixels_in_sec"))
+        self.spin_pix_in_sec.valueChanged.connect(
+            partial(self.update, "pixels_per_sec")
+        )
         self.spin_height.valueChanged.connect(partial(self.update, "height"))
         self.combo_color_map.currentTextChanged.connect(
             partial(self.update, "color_map")
@@ -29,7 +31,7 @@ class ImageOptionsWidget(OptionsWidget, Ui_ImageOptions):
     def map_update_ui_functions(self):
         res = {
             "invert_colors": partial(self.update_checkbox, self.cb_invert_colors),
-            "pixels_in_sec": partial(self.update_spinbox, self.spin_pix_in_sec),
+            "pixels_per_sec": partial(self.update_spinbox, self.spin_pix_in_sec),
             "height": partial(self.update_spinbox, self.spin_height),
             "color_map": partial(
                 self.update_combobox,

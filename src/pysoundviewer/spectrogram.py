@@ -58,7 +58,10 @@ class Spectrogram:
 
         if self["scale"] == "Mel":
             spectro = librosa.feature.melspectrogram(
-                S=spectro, n_mels=256  # y=self.audio.get_data(), sr=self.audio.sr
+                S=spectro,
+                n_mels=self.options._options.get(
+                    "n_mels", 256
+                ),  # y=self.audio.get_data(), sr=self.audio.sr
             )
 
         spec = np.abs(spectro)
