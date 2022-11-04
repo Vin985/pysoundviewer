@@ -3,15 +3,21 @@
 ################################################################################
 ## Form generated from reading UI file 'image_options.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.1.2
+## Created by: Qt User Interface Compiler version 6.4.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import *  # type: ignore
-from PySide6.QtGui import *  # type: ignore
-from PySide6.QtWidgets import *  # type: ignore
-
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QGridLayout,
+    QLabel, QSizePolicy, QSlider, QSpinBox,
+    QWidget)
 
 class Ui_ImageOptions(object):
     def setupUi(self, ImageOptions):
@@ -52,8 +58,9 @@ class Ui_ImageOptions(object):
         sizePolicy1.setHeightForWidth(self.slider_contrast.sizePolicy().hasHeightForWidth())
         self.slider_contrast.setSizePolicy(sizePolicy1)
         self.slider_contrast.setMinimum(0)
-        self.slider_contrast.setMaximum(5)
-        self.slider_contrast.setSingleStep(5)
+        self.slider_contrast.setMaximum(20)
+        self.slider_contrast.setSingleStep(1)
+        self.slider_contrast.setValue(5)
         self.slider_contrast.setTracking(False)
         self.slider_contrast.setOrientation(Qt.Horizontal)
 
