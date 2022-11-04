@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QWidget
 
-from pysoundplayer.gui.settings import SoundPlayerSettings
+from pysoundviewer.gui.settings import SoundPlayerSettings
 
 from .ui.QSpectrogramVizualizer_ui import Ui_QSpectrogramVizualizer
 
