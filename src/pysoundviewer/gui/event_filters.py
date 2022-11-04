@@ -12,7 +12,7 @@ class SpectrogramMouseFilter(QtCore.QObject):  # And this one
                 self.parent.seek_sound(event.scenePos().x())
 
         elif event.type() == QtCore.QEvent.GraphicsSceneWheel:
-            if event.modifiers() & QtCore.Qt.CTRL:
+            if event.modifiers() == QtCore.Qt.ControlModifier:
                 if event.delta() > 0:
                     self.parent.zoom(1.1, event.scenePos())
                 else:
