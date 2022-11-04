@@ -13,7 +13,7 @@ class ImageOptions(OptionsObject):
     DEFAULT_OPTIONS = {
         "color_masks_str": ["red", "lime", "blue"],
         "composite_ffts": [128, 512, 2048],
-        "contrast": 0,
+        "contrast": 5,
         "invert_colors": False,
         "height": 400,
         "pixels_per_sec": 200,
