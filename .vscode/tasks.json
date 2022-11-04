@@ -6,12 +6,12 @@
         {
             "label": "pysoundviewer all",
             "type": "shell",
-            "command": "python setup.py clean --all; python setup.py install; cd examples; python spectrogram_viewer_example.py",
+            "command": "cd ${workspaceFolder}; python setup.py clean --all; python setup.py install; cd examples; python spectrogram_viewer_example.py",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": []
+            "problemMatcher": [],
         },
         {
             "label": "pysoundviewer install",
