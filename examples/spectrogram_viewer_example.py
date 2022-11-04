@@ -80,7 +80,7 @@ def main():
     example.spectrogram_viewer.draw_annotation(tag2)
 
     example.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
 
 
 if __name__ == "__main__":
