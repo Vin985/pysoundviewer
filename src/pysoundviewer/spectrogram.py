@@ -51,7 +51,7 @@ class Spectrogram:
 
         spectro = librosa.stft(
             self.audio.get_data(),
-            int(self["n_fft"]),
+            n_fft=int(self["n_fft"]),
             hop_length=hop_length,
             window=self["window"],
         )
@@ -59,7 +59,7 @@ class Spectrogram:
         if self["scale"] == "Mel":
             spectro = librosa.feature.melspectrogram(
                 S=spectro,
-                n_mels=self.options._options.get(
+                n_mels=self.options.options.get(
                     "n_mels", 256
                 ),  # y=self.audio.get_data(), sr=self.audio.sr
             )
